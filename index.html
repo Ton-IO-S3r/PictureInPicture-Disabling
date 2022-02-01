@@ -10,7 +10,8 @@
 
 <body>
   <div>
-    <video id="video" src="./VID-20220128-WA0013.mp4" controls autoplay loop style="width: 70%;"></video>
+    <video disablePictureInPicture id="video" src="./VID-20220128-WA0013.mp4" controls autoplay loop
+      style="width: 70%;"></video>
 
     <!-- <iframe disablePictureInPicture src="./VID-20220128-WA0013.mp4"></iframe> -->
   </div>
@@ -39,17 +40,16 @@
         // Video failed to enter/leave Picture-in-Picture mode.
       }
     });
-
-    video.onenterpictureinpicture = async () => {
-      try {
-        console.log('saliendo..')
-        if (document.pictureInPictureElement) {
-          await document.exitPictureInPicture();
-        }
-      } catch (err) {
-        // Video failed to enter/leave Picture-in-Picture mode.
-      }
-    }
+    // video.onenterpictureinpicture = async () => {
+    //     try {
+    //       console.log('saliendo..')
+    //       if (document.pictureInPictureElement) {
+    //         await document.exitPictureInPicture();
+    //       }
+    //     } catch (err) {
+    //       // Video failed to enter/leave Picture-in-Picture mode.
+    //     }
+    //   }
   </script>
 </body>
 
