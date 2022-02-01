@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PIP</title>
+</head>
+
+<body>
+  <div>
+    <video id="video" src="./VID-20220128-WA0013.mp4" controls autoplay loop style="width: 70%;"></video>
+
+    <!-- <iframe disablePictureInPicture src="./VID-20220128-WA0013.mp4"></iframe> -->
+  </div>
+  <div>
+    <button id="togglePipButton"> Toggle PIP </button>
+  </div>
+
+  <script>
+    const video = document.getElementById("video");
+    const togglePipButton = document.getElementById("togglePipButton");
+
+    // Hide button if Picture-in-Picture is not supported or disabled.
+    togglePipButton.hidden =
+      !document.pictureInPictureEnabled || video.disablePictureInPicture;
+
+    togglePipButton.addEventListener("click", async () => {
+      // If there is no element in Picture-in-Picture yet, let’s request
+      // Picture-in-Picture for the video, otherwise leave it.
+      try {
+        if (document.pictureInPictureElement) {
+          await document.exitPictureInPicture();
+        } else {
+          await video.requestPictureInPicture();
+        }
+      } catch (err) {
+        // Video failed to enter/leave Picture-in-Picture mode.
+      }
+    });
+
+    video.onenterpictureinpicture = async () => {
+      try {
+        console.log('saliendo..')
+        if (document.pictureInPictureElement) {
+          await document.exitPictureInPicture();
+        }
+      } catch (err) {
+        // Video failed to enter/leave Picture-in-Picture mode.
+      }
+    }
+  </script>
+</body>
+
+</html>
